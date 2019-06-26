@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "nk-jtb-icons";
+  src:url("#{$icon-font-path}/nk-jtb-icons.eot");
+  src:url("#{$icon-font-path}/nk-jtb-icons.eot?#iefix") format("embedded-opentype"),
+    url("#{$icon-font-path}/nk-jtb-icons.woff") format("woff"),
+    url("#{$icon-font-path}/nk-jtb-icons.ttf") format("truetype"),
+    url("#{$icon-font-path}/nk-jtb-icons.svg#nk-jtb-icons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+[data-icon]:before {
+  font-family: "nk-jtb-icons" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "nk-jtb-icons" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-checkbox-checked:before {
+  content: "\61";
+}
+.icon-check:before {
+  content: "\62";
+}
+.icon-user:before {
+  content: "\63";
+}
+.icon-chevron-right:before {
+  content: "\64";
+}
+.icon-chevron-down:before {
+  content: "\65";
+}
+.icon-chevron-left:before {
+  content: "\66";
+}
+.icon-chevron-up:before {
+  content: "\67";
+}
+.icon-search:before {
+  content: "\68";
+}

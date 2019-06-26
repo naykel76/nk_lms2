@@ -1,0 +1,174 @@
+// NK utility classes for general use
+
+// Element Spacing and Stacking items
+// Margins, padding and gutters
+// Element Position
+// Text Alignment
+// Borders and Backgrounds
+// Display
+
+// ==========================================================================
+// Element Spacing and Stacking items
+// ==========================================================================
+// put the margin on top so it takes care of the first stacked item and
+// it eliminate the need to deal with margins on the bottom
+
+// ==========================================================================
+// Margins, padding and gutters
+// ==========================================================================
+
+$spacings:(
+  sm: $margin-sm,
+  margin: $margin,
+  md: $margin-md,
+  lg: $margin-lg,
+  xl: $margin-xl
+);
+
+// Positioning --\0/--
+.ma{margin-left: auto !important; margin-right: auto !important;}
+.mla{margin-left: auto !important;}
+.mra{margin-left: auto !important;}
+
+.nm{margin: 0 !important;}
+.nms{margin-left: 0 !important; margin-right: 0 !important;}
+.nmb{margin-bottom: 0 !important;}
+.nmt{margin-top: 0 !important;}
+
+.np{padding: 0 !important;}
+.npb{padding-bottom: 0 !important;}
+.npt{padding-top: 0 !important;}
+
+// Margins --\0/--
+.mxy-sm{margin: $margin-sm !important;}
+.ml-sm{margin-left: $margin-sm !important;} .mr-sm{margin-right: $margin-sm !important;} .mx-sm{margin-left: $margin-sm !important; margin-right: $margin-sm !important;}
+.mt-sm{margin-top: $margin-sm !important;} .mb-sm{margin-bottom: $margin-sm !important;} .my-sm{margin-top: $margin-sm !important; margin-bottom: $margin-sm !important;}
+
+.mxy{margin: $margin !important;}
+.ml{margin-left: $margin !important;} .mr{margin-right: $margin !important;} .mx{margin-left: $margin !important; margin-right: $margin !important;}
+.mt{margin-top: $margin !important;} .mb{margin-bottom: $margin !important;} .my{margin-top: $margin !important; margin-bottom: $margin !important;}
+
+.mxy-md{margin: $margin-md !important;}
+.ml-md{margin-left: $margin-md !important;} .mr-md{margin-right: $margin-md !important;} .mx-md{margin-left: $margin-md !important; margin-right: $margin-md !important;}
+.mt-md{margin-top: $margin-md !important;} .mb-md{margin-bottom: $margin-md !important;} .my-md{margin-top: $margin-md !important; margin-bottom: $margin-md !important;}
+
+.mxy-lg{margin: $margin-lg !important;}
+.ml-lg{margin-left: $margin-lg !important;} .mr-lg{margin-right: $margin-lg !important;} .mx-lg{margin-left: $margin-lg !important; margin-right: $margin-lg !important;}
+.mt-lg{margin-top: $margin-lg !important;} .mb-lg{margin-bottom: $margin-lg !important;} .my-lg{margin-top: $margin-lg !important; margin-bottom: $margin-lg !important;}
+
+
+// Paddings --\0/--
+.pxy-sm{padding: $gutter-sm !important;}
+.pl-sm{padding-left: $gutter-sm !important;} .pr-sm{padding-right: $gutter-sm !important;} .px-sm{padding-left: $gutter-sm !important; padding-right: $gutter-sm !important;}
+.pt-sm{padding-top: $gutter-sm !important;} .pb-sm{padding-bottom: $gutter-sm !important;} .py-sm{padding-top: $gutter-sm !important; padding-bottom: $gutter-sm !important;}
+
+.pxy{padding: $gutter !important;}
+.pl{padding-left: $gutter !important;} .pr{padding-right: $gutter !important;} .px{padding-left: $gutter !important; padding-right: $gutter !important;}
+.pt{padding-top: $gutter !important;} .pb{padding-bottom: $gutter !important;} .py{padding-top: $gutter !important; padding-bottom: $gutter !important;}
+
+.pxy-md{padding: $gutter-md !important;}
+.pl-md{padding-left: $gutter-md !important;} .pr-md{padding-right: $gutter-md !important;} .px-md{padding-left: $gutter-md !important; padding-right: $gutter-md !important;}
+.pt-md{padding-top: $gutter-md !important;} .pb-md{padding-bottom: $gutter-md !important;} .py-md{padding-top: $gutter-md !important; padding-bottom: $gutter-md !important;}
+
+.pxy-lg{padding: $gutter-lg !important;}
+.pl-lg{padding-left: $gutter-lg !important;} .pr-lg{padding-right: $gutter-lg !important;} .px-lg{padding-left: $gutter-lg !important; padding-right: $gutter-lg !important;}
+.pt-lg{padding-top: $gutter-lg !important;} .pb-lg{padding-bottom: $gutter-lg !important;} .py-lg{padding-top: $gutter-lg !important; padding-bottom: $gutter-lg !important;}
+
+.pxy-xl{padding: $gutter-xl !important;}
+.pl-xl{padding-left: $gutter-xl !important;} .pr-xl{padding-right: $gutter-xl !important;} .px-xl{padding-left: $gutter-xl !important; padding-right: $gutter-xl !important;}
+.pt-xl{padding-top: $gutter-xl !important;} .pb-xl{padding-bottom: $gutter-xl !important;} .py-xl{padding-top: $gutter-xl !important; padding-bottom: $gutter-xl !important;}
+
+// ==========================================================================
+// Element Position
+// ==========================================================================
+
+[class*='pos-'] { position: absolute !important; }
+
+.pos-t {top: 0; left: 0; right: 0;}
+.pos-b {bottom: 0; left: 0;  right: 0;}
+.pos-tl {top: 0; left: 0;}
+.pos-tr {top: 0; right: 0;}
+.pos-bl {bottom: 0; left: 0;}
+.pos-br {bottom: 0; right: 0;}
+
+.pos-abs { position: absolute !important; }
+
+.pos-rel {
+  position: relative !important;
+  .ctr{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .bl {
+    position: absolute;
+    bottom: .5rem;
+    left: 1rem;
+  }
+  .br {
+    position: absolute;
+    bottom: .5rem;
+    right: 1rem;
+  }
+  .tl {
+    position: absolute;
+    top: .5rem;
+    left: 1rem;
+  }
+  .tr {
+    position: absolute;
+    top: .5rem;
+    right: 1rem;
+  }
+
+}
+
+.pull-right{float: right;}
+.pull-left{float: left;}
+
+
+// ==========================================================================
+// Borders and Backgrounds
+// ==========================================================================
+
+.nbg{background-color: transparent;} // no back ground
+
+.bdr3{border-width: 3px;}
+.bdr5{border-width: 5px;}
+
+// .bdr{border: 1px solid $base-border;}
+.bdr{border: 1px solid rgba(0,0,0,.3)}
+
+// ==========================================================================
+// Display
+// ==========================================================================
+.dilb{display: inline-block !important;}
+.dbl{display: block !important;}
+.dis-blk{display: block !important;}
+
+
+
+
+
+.fwn {
+  font-weight: normal !important;
+}
+
+.clearfix::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+
+.tal{
+  text-align: left !important;
+}
+
+.tar{
+  text-align: right !important;
+}
+
+// ==========================================================================
+// Alignment *** REFER TO FLEX ***
+// ==========================================================================

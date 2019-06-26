@@ -1,0 +1,86 @@
+p + h2,
+p + h3{margin-top: 2rem;}
+
+
+// --------------------------------------------------------------------------
+// Headings
+// --------------------------------------------------------------------------
+
+// create heading font sizes
+@for $size from 1 through length($heading-sizes) {
+	h#{$size} {
+    font-size: nth($heading-sizes, $size);
+    font-weight: 500;
+	}
+}
+
+.lead{
+	font-size: 1.3rem;
+	font-weight: 300;
+}
+// page title
+
+
+.title{
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+
+//
+.headline {
+  color: $headline-color;
+  font-weight: $headline-font-weight;
+  font-size: 1.3rem;
+  margin-bottom: $margin;
+  text-transform: uppercase;
+  // @include tablet {font-size: 3rem;}
+  // @include desktop {font-size: 4rem;}
+  // @include large-screen {font-size: 4.5rem;}
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  line-height: 1.2;
+  color: $headline-color;
+  margin-bottom: $margin;
+  font-weight: 400;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, .3);
+  @include tablet {font-size: 2rem;}
+  @include desktop {font-size: 2.5rem;}
+  @include large-screen {font-size: 2.9rem;}
+}
+
+// --------------------------------------------------------------------------
+// Text Modifiers
+// --------------------------------------------------------------------------
+
+.txt{
+
+	// -- Alignment --
+	&-l{text-align: left;}
+	&-r{text-align: right;}
+	&-j{text-align: justify;}
+	&-ctr{text-align: center;}
+
+ 	// size modifiers
+	&-lg{font-size: 3rem;}
+	&-xl{font-size: 5rem;}
+
+	// colour modifiers
+	&-green{color: $green;}
+	&-red{color: $red;}
+	&-orange{color: $orange;}
+	&-blue{color: $blue;}
+	&-white{color: #fff;}
+	&-muted{ color: #867d7d;}
+
+}
+
+
+
+$hero-headline-color: #fff;
+$hero-font-weight: 300;
+$bg-gradient: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+
+

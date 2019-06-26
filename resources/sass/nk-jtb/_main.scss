@@ -1,0 +1,70 @@
+
+
+// remove the top margins from all first elements and deal
+// with on a case by case. DO NOT CHANGE! ..... again!
+* > :first-child{ margin-top: 0; }
+
+p + *{
+  margin-top: $gutter;
+}
+
+
+#nk-header {
+  background: $header-bg;
+  padding: $gutter;
+}
+
+
+#nk-navbar {
+  background: $navbar-bg;
+}
+
+.section,
+#nk-top-a, #nk-top-b, #nk-bottom-a, #nk-bottom-b {padding: $gutter-lg;}
+
+#nk-footer {
+  background: $footer-bg;
+  padding: $gutter-lg;
+}
+
+
+
+#nk-middle {
+  padding: $gutter-lg 0;
+  background: #f3e9e7;
+  background: #fff;
+}
+
+#nk-footer {
+  color: #47788c;
+  background: $footer-bg;
+  min-height: 100px;
+
+}
+
+
+.copyright {// small strip below footer
+  color: #ccc;
+  padding: $gutter-sm 0;
+  text-align: center;
+  font-size: .9rem;
+  border: 0; // remove border from colour scheme
+}
+
+
+.page{
+  @include box-shadow();
+  padding: $gutter-sm;
+  border: 1px solid #ddd;
+  @include phone {
+    padding: $gutter;
+  }
+  @include desktop {
+    padding: $gutter-lg;
+  }
+}
+
+@include small { }
+@include phone { }
+@include desktop { }
+@include large-screen { }

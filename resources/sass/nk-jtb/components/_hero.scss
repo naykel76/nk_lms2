@@ -1,0 +1,28 @@
+
+
+.hero {
+  // background-image: $bg-gradient, url('#{$img-path}/hero-xl.jpg');
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  // background-position: center;
+  // height: 100vh;
+  // display: flex;
+  // @include tablet { background-image: $bg-gradient, url('#{$img-path}/hero-md.jpg'); }
+  // @include desktop { background-image: $bg-gradient, url('#{$img-path}/hero-lg.jpg'); }
+  // @include large-screen { background-image: $bg-gradient, url('#{$img-path}/hero-xl.jpg'); }
+
+  // main container for hero text
+  &-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    line-height: 1;
+    padding: $gutter-sm;
+    max-width: 1200px;
+  }
+
+
+}
+

@@ -1,0 +1,80 @@
+// ==========================================================================
+// Display
+// ==========================================================================
+
+.hide{
+  display: none !important;
+}
+.dilb {
+  display: inline-block !important;
+}
+
+.dbl {
+  display: block !important;
+}
+
+.dblk {
+  display: block !important;
+}
+
+
+
+
+// $spacings:(
+//   sm: $margin-sm,
+//   margin: $margin,
+//   md: $margin-md,
+//   lg: $margin-lg,
+//   xl: $margin-xl
+// );
+
+// $breakpoints: (xs: 320px,
+//   sm: 556px,
+//   md: 768px,
+//   lg: 992px,
+//   xl: 1200px);
+
+// // translate breakpoints into user firendly names for easy reference
+
+// // these could be refered to as display when sizes, display when min width is $tablet
+// $small: map-get($breakpoints, xs);        // 320
+// $phone: map-get($breakpoints, sm);
+// $tablet: map-get($breakpoints, md);
+// $desktop: map-get($breakpoints, lg);
+// $large-screen: map-get($breakpoints, xl);
+
+
+// display when size and above
+
+// for each breakpoint (xs, sm, etc ...) in breakpoints
+@each $breakpoint, $size in $breakpoints{
+  // create a media query with min-width of $size
+  @media (min-width: $size){
+    // display
+    .d-#{$breakpoint} { // display size up
+      display: block !important;
+    }
+    .h-#{$breakpoint} {
+      display: none !important; // display size down
+    }
+  }
+
+  // @media (max-width: $size - 1){
+  //   // display
+  //   .h-#{$breakpoint} {
+  //     display: none; // display size down
+  //   }
+  // }
+
+}
+
+// // for each breakpoint (xs, sm, etc ...) in breakpoints
+// @each $breakpoint, $size in $breakpoints{
+//   @media (max-width: $size - 1){
+//     // display
+//     .h-#{$breakpoint} {
+//       display: none; // display size down
+//     }
+//   }
+
+// }

@@ -1,0 +1,45 @@
+$themes: (
+  ("primary", $primary, #fff ),
+  ("secondary", $secondary, #fff ),
+);
+
+// --------------------------------------------------------------------------
+// Base Class
+// --------------------------------------------------------------------------
+// The base class adds colour to the entire box
+.bx {
+  padding: $gutter;
+  border: 1px solid rgba(0,0,0,0.125);
+  border-radius: .25rem;
+
+  // this is just a cheap effect to prevent indvidual styling
+  &.hover:hover{
+    opacity: .9;
+    margin-top: 1px;
+    &:active{
+      opacity: 1;
+    }
+  }
+
+}
+
+
+
+.bx-title{
+  // margin not required, will be handled by the next element
+  font-size: 1.5rem;
+  margin-top: $gutter;
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+// each nth item value (must be in order)
+@each $theme in $themes {
+  .bx-#{nth($theme,1)} {
+    @extend .bx;
+    background-color: #{nth($theme,2)};
+    border: 1px solid rgba(0,0,0,.15);
+    color: #{nth($theme,3)};
+  }
+}
+

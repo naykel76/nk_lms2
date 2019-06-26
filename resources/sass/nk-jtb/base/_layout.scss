@@ -1,0 +1,132 @@
+// https://www.sitepoint.com/managing-responsive-breakpoints-sass/
+// https://www.sitepoint.com/using-sass-maps/
+
+// ==========================================================================
+// MAPS
+// ==========================================================================
+$col-widths: (
+  10: 10%,
+  20: 20%,
+  25: 25%,
+  30: 30%,
+  33: 33.3333%,
+  40: 40%,
+  50: 50%,
+  60: 60%,
+  66: 66.6666%,
+  70: 70%,
+  75: 75%,
+  80: 80%,
+  90: 90%,
+  100: 100%,
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px
+) !default;
+
+// add heights and access with 'h' eg. class="h40"
+$heights:(
+  40: 40px,
+  100: 100px,
+  200: 200px
+);
+
+$widths:(
+  100: 100px,
+  200: 200px,
+);
+// == END MAPS ==============================================================
+
+.container {
+  width: 100%;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 1200px;
+}
+
+.row {
+  display: flex;
+  // allow comulns to wrap to the next line
+  flex-wrap: wrap;
+  // negative padding to align to container
+  margin-right: -1rem;
+  margin-left: -1rem;
+  // add top margin to stacked rows
+  +.row{
+    margin-top: $gutter;
+  }
+}
+
+[class*='col']{
+  padding-left: 1rem;
+  padding-right: 1rem;
+  // cols will be 100% after the smallest col class
+  // eg. col-50 will be 100% @ min-width: $tablet - 1;
+  flex: 0 0 100%;
+  max-width: 100%;
+  position: relative;
+}
+
+.col{
+  -ms-flex-preferred-size: 0;
+  flex-basis: 0;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  max-width: 100%;
+}
+
+
+// ==========================================================================
+// Height Classes
+// ==========================================================================
+@each $key, $value in $heights {
+  .h#{$key} {
+    height: $value;
+  }
+}
+
+// ==========================================================================
+// Width Classes
+// ==========================================================================
+@each $key, $value in $widths {
+  .w#{$key} {
+    width: $value;
+  }
+}
+
+// ==========================================================================
+// Create Columns including Media Queries
+// ==========================================================================
+
+// Base classes (non responsive)
+// for each width in col-widths
+@each $column, $width in $col-widths {
+  // create class .col-breakpoint-width
+  .col-#{$column} {
+    flex: 0 0 $width;
+    max-width: $width;
+  }
+}
+
+// Responsive classes
+// for each breakpoint (xs, sm, etc ...) in breakpoints
+@each $breakpoint, $size in $breakpoints{
+  // create a media query with min-width of $size
+  @media (min-width: $size){
+    // for each width in col-widths
+    @each $column, $width in $col-widths {
+      // create class .col-breakpoint-width
+      .col-#{$breakpoint}-#{$column} {
+        flex: 0 0 $width;
+        max-width: $width;
+      }
+    }
+  }
+}
+

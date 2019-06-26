@@ -1,0 +1,19 @@
+// --------------------------------------------------------------------------
+// Set text colour based on background
+// --------------------------------------------------------------------------
+//
+// .myClass{
+//   color: setTextColor($bg-color)
+// }
+//
+
+@function setTextColor($bg-color) {
+  @if(lightness($bg-color) > 55) {
+    @return $base-color;
+  } @else {
+    @return #fff;
+  }
+}
+
+
+
