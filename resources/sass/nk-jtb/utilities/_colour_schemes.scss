@@ -14,7 +14,7 @@ $colors: (
 @each $key, $value in $colors {
   .#{$key} {
     background: $value;
-    border: 2px solid rgba(0,0,0,0.15);
+    border: 1px solid rgba(0,0,0,0.15);
     // set text colour based on background setTextColor()
     color: setTextColor($value);
   }

@@ -1,9 +1,5 @@
 
 // specifically set height for select to equal other form elements
-label{
-  font-weight: 500;
-  margin-right: 5px;
-}
 
 select{
   line-height: $control-height ; // something not quite right here!!!
@@ -57,3 +53,25 @@ input{
 
 }
 
+
+form{
+
+  .row{
+
+    align-items: center; // align labels
+
+    input, select, textarea{
+      width: 100%;
+    }
+
+    // if in row with cols adjust margins to center label to input
+    label[class*="col-"] {
+      margin-right: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  +.row{
+    margin-top: $gutter;
+  }
+}

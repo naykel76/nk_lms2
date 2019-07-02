@@ -81,6 +81,11 @@ $widths:(
   max-width: 100%;
 }
 
+// shrink to fit
+.col-stf{
+  flex: 0 0 auto;
+  max-width: none;
+}
 
 // ==========================================================================
 // Height Classes

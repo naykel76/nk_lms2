@@ -8,7 +8,7 @@
       <div class="flexCon align-m">
         <nav class="nav bdr">
           <a href="admin/courses">Admin</a>
-          <a href="admin/courses">GitHub</a>
+          <a href="https://github.com/naykel76/nk_lms.git" _target="blank">GitHub</a>
         </nav>
 
         <!-- Authentication Links -->

@@ -1,11 +1,4 @@
-# NAYKEL JTB
-
-NAYKEL Laravel installation with:
-
--   NK-JTB framework, docs, layouts and partials
--   `PagesController`
--   User authentication enabled
--   Parsedown
+# NAYKEL LMS
 
 #### After cloning this repository, go to the root folder and run the following commands to install dependencies.
 
@@ -21,12 +14,3 @@ NAYKEL Laravel installation with:
 -   Set contact email `APP_EMAIL="email@email.com.au"`
 
 -   run `php artisan migrate`
-
-## Clean Start
-
-For a clean start after installation you can safely remove:
-
--   `resources/views/nk` these are just development docs
--   `public/laravel` more docs
--   clean up routes file
--   clean up navs

@@ -12,7 +12,9 @@ class CoursesController extends Controller {
     public function index() {
 
         $title = 'Courses';
+
         $courses = Course::all();
+
         return view('admin.courses.index', compact('title', 'courses'));
 
     }
@@ -51,12 +53,9 @@ class CoursesController extends Controller {
 
     }
 
-    public function edit($id) {
+    public function edit(Course $course) {
 
         $title = 'Courses Example';
-
-        // fetch record with id = $id or return 404
-        $course = Course::findOrFail($id);
 
         // load view and pass course data
         return view('admin.courses.edit', compact('title', 'course'));
@@ -79,10 +78,10 @@ class CoursesController extends Controller {
         return redirect('admin/courses');
     }
 
-    public function destroy($id) {
+    public function destroy(Course $course) {
 
         // fetch course data and delete it
-        Course::findOrFail($id)->delete();
+        $course->delete();
 
         // redirect to main courses page
         return redirect('admin/courses');

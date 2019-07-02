@@ -228,6 +228,8 @@ th {
 label {
   display: inline-block;
   margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
+  font-weight: 500;
 }
 
 button {
@@ -390,6 +392,12 @@ template {
   -webkit-box-flex: 1;
           flex-grow: 1;
   max-width: 100%;
+}
+
+.col-stf {
+  -webkit-box-flex: 0;
+          flex: 0 0 auto;
+  max-width: none;
 }
 
 .h40 {
@@ -943,7 +951,7 @@ template {
   margin: 0 !important;
 }
 
-.nms {
+.nmx {
   margin-left: 0 !important;
   margin-right: 0 !important;
 }
@@ -958,6 +966,11 @@ template {
 
 .np {
   padding: 0 !important;
+}
+
+.npx {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 .npb {
@@ -1524,11 +1537,6 @@ button {
   background-color: #e60000;
 }
 
-label {
-  font-weight: 500;
-  margin-right: 5px;
-}
-
 select {
   line-height: calc(2.15rem + (1px * 2));
 }
@@ -1591,6 +1599,26 @@ input.danger {
 }
 
 .frm-row + .frm-row {
+  margin-top: 1.25rem;
+}
+
+form .row {
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+form .row input,
+form .row select,
+form .row textarea {
+  width: 100%;
+}
+
+form .row label[class*=col-] {
+  margin-right: 0;
+  margin-bottom: 0;
+}
+
+form + .row {
   margin-top: 1.25rem;
 }
 
@@ -1799,55 +1827,55 @@ p + * {
 
 .primary {
   background: #003049;
-  border: 2px solid rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   color: #fff;
 }
 
 .secondary {
   background: #F77F00;
-  border: 2px solid rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   color: #fff;
 }
 
 .dark {
   background: #222222;
-  border: 2px solid rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   color: #fff;
 }
 
 .light {
   background: #fafafa;
-  border: 2px solid rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   color: #333;
 }
 
 .danger {
   background: #dc3545;
-  border: 2px solid rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   color: #fff;
 }
 
 .success {
   background: #28a745;
-  border: 2px solid rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   color: #fff;
 }
 
 .warning {
   background: #ffc107;
-  border: 2px solid rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   color: #fff;
 }
 
 .blue {
   background: #007bff;
-  border: 2px solid rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   color: #fff;
 }
 
 .purple {
   background: #6f42c1;
-  border: 2px solid rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.15);
   color: #fff;
 }
 

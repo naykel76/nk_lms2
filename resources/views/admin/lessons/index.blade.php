@@ -1,11 +1,12 @@
 @extends('admin.layouts.admin')
-
+@section('title', $title)
 
 @section('content')
+<h1>{{ $title }}</h1>
 
 <div class="pr-lg">
 
-  <a href="{{ route('admin.courses.create') }}" class="btn primary">Add New</a>
+  <a href="{{ route('admin.lessons.create') }}" class="btn primary">Add New</a>
   <br>
   <br>
   <style></style>
@@ -14,19 +15,19 @@
       <tr>
         <th>Course</th>
         <th>Order</th>
-        <th>Price</th>
         <th width="15%">Actions</th>
       </tr>
 
-      @foreach ($courses as $course)
+      @foreach ($lessons as $lesson)
       <tr>
-        <td>{{ $course->title }}</td>
-        <td></td>
-        <td>{{ $course->price }}</td>
-        <td>
-          <a href="{{ route('admin.courses.edit', $course->id) }}" class="btn sm success">Edit</a>
+        <td>{{ $lesson->title }}</td>
 
-          <form method="POST" class="dilb" action="{{ route('admin.courses.destroy', $course->id) }}">
+        <td> </td>
+
+        <td>
+          <a href="{{ route('admin.lessons.edit', $lesson->id) }}" class="btn sm success">Edit</a>
+
+          <form method="POST" class="dilb" action="{{ route('admin.lessons.destroy', $lesson->id) }}">
 
             {{ method_field('DELETE') }}
             {{ csrf_field() }}
