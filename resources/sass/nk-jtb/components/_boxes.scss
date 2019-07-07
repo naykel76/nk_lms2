@@ -12,6 +12,12 @@ $themes: (
   border: 1px solid rgba(0,0,0,0.125);
   border-radius: .25rem;
 
+  // !! leave the top gutter alone !!
+  // if first child gutter will be automatically removed
+  // this will only be a problem when several boxes sit in a single row
+  // unseperated by a col
+  margin-top: $gutter;
+
   // this is just a cheap effect to prevent indvidual styling
   &.hover:hover{
     opacity: .9;
@@ -23,6 +29,11 @@ $themes: (
 
 }
 
+// remove top margin when using flexbox
+.row > .bx + .bx,
+.flexCon > .bx + .bx {
+  margin-top: 0;
+}
 
 
 .bx-title{

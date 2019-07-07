@@ -1,12 +1,8 @@
-
-
 // remove the top margins from all first elements and deal
 // with on a case by case. DO NOT CHANGE! ..... again!
-* > :first-child{ margin-top: 0; }
-
-p + *{
-  margin-top: $gutter;
-}
+// Set to important to make sure it overrides defaults,
+// however this may become a pain in the ass!
+* > :first-child{ margin-top: 0 !important; }
 
 
 #nk-header {

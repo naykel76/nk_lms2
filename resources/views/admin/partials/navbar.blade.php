@@ -6,7 +6,11 @@
     </div>
 
     <div class="flexCon align-m">
-      <h2>LMS</h2>
+      <nav class="nav">
+        <a href="{{  route('admin.courses.index') }}">Courses</a>
+        <a href="{{  route('admin.lessons.index') }}">Lessons</a>
+      </nav>
+
       <!-- Authentication Links -->
       @guest
       <a class="pxy" href="{{ route('login') }}">{{ __('Login') }}</a>

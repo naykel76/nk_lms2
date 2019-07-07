@@ -20,6 +20,13 @@ $flex-align-items:(
   display: flex;
   flex-wrap: wrap;
 
+  &.col{
+    flex-direction: column;
+  }
+}
+
+.flexCon, .row{
+
   @each $key, $value in $flex-justify{
     &.justify-#{$key}{justify-content: $value;}
   }
@@ -28,8 +35,4 @@ $flex-align-items:(
     &.align-#{$key}{align-items: $value;}
   }
 
-  &.col{
-    flex-direction: column;
-  }
 }
-

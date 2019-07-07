@@ -15,3 +15,9 @@
     // toggle open side draw
     openDrawer = () => document.getElementById("drawer").classList.toggle('open');
 </script>
+
+{{-- <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script> --}}
+<script src="{{asset('vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script>
+<script>
+  CKEDITOR.replace( 'article-ckeditor' );
+</script>

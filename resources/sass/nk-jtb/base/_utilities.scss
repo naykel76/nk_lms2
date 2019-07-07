@@ -17,46 +17,40 @@
 // Margins, padding and gutters
 // ==========================================================================
 
-$spacings:(
-  sm: $margin-sm,
-  margin: $margin,
-  md: $margin-md,
-  lg: $margin-lg,
-  xl: $margin-xl
+$margins:(
+  -sm: $margin-sm,
+  '': $margin,
+  -md: $margin-md,
+  -lg: $margin-lg
 );
+
+@each $key, $value in $margins {
+  .mt#{$key} {margin-top: $value;}
+  .mb#{$key} {margin-bottom: $value;}
+  .ml#{$key} {margin-left: $value;}
+  .mr#{$key} {margin-right: $value;}
+  .my#{$key} {margin-top: $value; margin-bottom: $value;}
+  .mx#{$key} {margin-left: $value; margin-right: $value;}
+  .mxy#{$key} {margin: $value;}
+}
 
 // Positioning --\0/--
 .ma{margin-left: auto !important; margin-right: auto !important;}
 .mla{margin-left: auto !important;}
 .mra{margin-left: auto !important;}
 
+// no margin
 .nm{margin: 0 !important;}
-.nmx{margin-left: 0 !important; margin-right: 0 !important;}
-.nmb{margin-bottom: 0 !important;}
 .nmt{margin-top: 0 !important;}
+.nmb{margin-bottom: 0 !important;}
+.nml{margin-left: 0 !important;}
+.nmr{margin-right: 0 !important;}
+.nmy{margin-top: 0 !important; margin-bottom: 0 !important;}
+.nmx{margin-left: 0 !important; margin-right: 0 !important;}
 
 .np{padding: 0 !important;}
-.npx{padding-left: 0 !important; padding-right: 0 !important;}
 .npb{padding-bottom: 0 !important;}
 .npt{padding-top: 0 !important;}
-
-// Margins --\0/--
-.mxy-sm{margin: $margin-sm !important;}
-.ml-sm{margin-left: $margin-sm !important;} .mr-sm{margin-right: $margin-sm !important;} .mx-sm{margin-left: $margin-sm !important; margin-right: $margin-sm !important;}
-.mt-sm{margin-top: $margin-sm !important;} .mb-sm{margin-bottom: $margin-sm !important;} .my-sm{margin-top: $margin-sm !important; margin-bottom: $margin-sm !important;}
-
-.mxy{margin: $margin !important;}
-.ml{margin-left: $margin !important;} .mr{margin-right: $margin !important;} .mx{margin-left: $margin !important; margin-right: $margin !important;}
-.mt{margin-top: $margin !important;} .mb{margin-bottom: $margin !important;} .my{margin-top: $margin !important; margin-bottom: $margin !important;}
-
-.mxy-md{margin: $margin-md !important;}
-.ml-md{margin-left: $margin-md !important;} .mr-md{margin-right: $margin-md !important;} .mx-md{margin-left: $margin-md !important; margin-right: $margin-md !important;}
-.mt-md{margin-top: $margin-md !important;} .mb-md{margin-bottom: $margin-md !important;} .my-md{margin-top: $margin-md !important; margin-bottom: $margin-md !important;}
-
-.mxy-lg{margin: $margin-lg !important;}
-.ml-lg{margin-left: $margin-lg !important;} .mr-lg{margin-right: $margin-lg !important;} .mx-lg{margin-left: $margin-lg !important; margin-right: $margin-lg !important;}
-.mt-lg{margin-top: $margin-lg !important;} .mb-lg{margin-bottom: $margin-lg !important;} .my-lg{margin-top: $margin-lg !important; margin-bottom: $margin-lg !important;}
-
 
 // Paddings --\0/--
 .pxy-sm{padding: $gutter-sm !important;}

@@ -10,4 +10,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::prefix('admin')->name('admin.')->group( function() {
     Route::resource('courses','Admin\CoursesController');
     Route::resource('lessons','Admin\LessonsController');
+
+    Route::post('courses/{course}/lessons', 'Admin\LessonsController@store');
 });
+
+// Route::post('admin/courses/{course}/lessons', 'Admin\LessonsController@store');
+
+//

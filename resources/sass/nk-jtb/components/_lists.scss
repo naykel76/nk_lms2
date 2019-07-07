@@ -1,0 +1,100 @@
+$listStyles: (
+  striped: $primary,
+  icon: $secondary,
+);
+
+// ==========================================================================
+// -- Base Class --
+// ==========================================================================
+.lst {
+  list-style: none;
+  padding: 0;
+
+  li {
+    margin-top: .5rem;
+  }
+
+
+  &-icon{
+
+    i{
+      margin-right: 10px;
+      margin-top: 3px;
+      // width: 1rem;
+      // height: 1rem;
+    }
+
+  }
+}
+
+
+// // Create List Variations
+// // ==========================================================================
+
+@each $key, $value in $listStyles {
+  .lst-#{$key} {
+    @extend .lst;
+  }
+}
+
+
+// .list-icon li{
+// 	display: flex;
+
+// 	i{
+// 		margin-right: 10px;
+// 		margin-top: 3px;
+// 		width: 1rem;
+// 		height: 1rem;
+// 		color: @alt-color;
+// 	}
+
+
+// ol{
+// 	list-style-type: decimal;
+//     padding-left: 25px; // align to the left of containing element
+// }
+
+
+
+// // ============================================================== -->
+// // list modifiers
+// // ============================================================== -->
+// .list{
+
+// 	li{
+// 		margin-bottom: 10px;
+// 	}
+
+// }
+
+
+// // indented lists
+// .uli, .oli{
+
+// 	padding-left: 40px;
+
+//     li{
+//     	margin-bottom: 5px;
+//     }
+// }
+
+// .list-bullet{
+
+// 	list-style: disc;
+
+// 	li{
+// 		// margin-bottom: 10px; // **** use .list instead **** DONT CHANGE ***
+// 		margin-left: 10px;
+
+// 		&.heading{
+// 			list-style: none;
+// 			margin-left: 0;
+// 		}
+// 	}
+
+// }
+
+
+
+

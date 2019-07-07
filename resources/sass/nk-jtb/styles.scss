@@ -25,6 +25,8 @@
 @import "components/boxes";
 @import "components/buttons";
 @import "components/forms";
+@import "components/icons";
+@import "components/lists";
 @import "components/nav";
 @import "components/navbar";
 @import "components/side-drawer";
@@ -39,8 +41,7 @@
 @import "utilities/colour_schemes";
 @import "utilities/display";
 @import "utilities/flex";
-@import "utilities/icons";
 @import "utilities/pretty";
 @import "utilities/text";
 
-@import "nk-lms/_nk-lms.scss";
+@import "nk-lms/nk-lms";

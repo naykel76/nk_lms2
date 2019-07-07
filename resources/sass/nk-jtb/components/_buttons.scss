@@ -1,7 +1,6 @@
 $buttonBackgrounds: (
   primary: $primary,
-  secondary: $secondary,
-  hot: red
+  secondary: $secondary
 );
 
 
@@ -54,7 +53,7 @@ button{
   user-select: none;
   background: $button-bg;
   transition: background-color 0.2s ease-in-out;
-  // text-transform: uppercase;
+  text-transform: uppercase;
   color: $button-color;
   border-radius: .2rem;
   font-weight: 500;

@@ -41,6 +41,13 @@ $widths:(
 );
 // == END MAPS ==============================================================
 
+// use with rows as fluid container
+.wrapper {
+  width: 100%;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
 .container {
   width: 100%;
   padding-right: 1rem;

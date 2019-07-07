@@ -1,39 +1,40 @@
-@extends('admin.layouts.admin')
+@extends('admin.layouts.admin-content')
 @section('title', $title)
 
-
+@section('toolbar')
+@include('admin.partials.frm-toolbar-create')
+@endsection
 
 @section('content')
 
-<form method="POST" action="{{ route('admin.courses.store') }}">
+
+<form id="frm" method="POST" action="{{ route('admin.courses.store') }}">
 
   @csrf
 
-  <div class="frm-row flexCon">
-    <div class="col-md-80">
-      <label for="title">Course Title</label>
-      <input type="text" name="title" placeholder="Course title" />
-    </div>
+  @include('admin.partials.frm-attr-title-alias')
 
-    <div class="col-md-20">
-      <label for="price">Price</label>
-      <input type="text" name="price" placeholder="Price" />
-    </div>
-  </div>
+  @include('admin.partials.frm-attr-headline')
 
-  <div class="frm-row flexCon">
-    <div class="col">
-      <label for="description">Course Description</label>
-      <textarea name="description"></textarea>
-    </div>
-  </div>
+  @include('admin.partials.frm-attr-image-price')
 
-  <div class="frm-row flexCon">
-    <div class="col">
-      <button type="submit" class="btn-primary">Add Course</button>
-    </div>
-  </div>
+  @include('admin.partials.frm-attr-body-cke')
+
+  @include('admin.partials.frm-toolbar-create')
 
 </form>
+
+
+@endsection
+
+
+@section('side-bar')
+<div class="bx danger">
+  <div class="bx-title mb">To Do's</div>
+  <ul>
+    <li>Image picker</li>
+    <li>Meta fields</li>
+  </ul>
+</div>
 
 @endsection

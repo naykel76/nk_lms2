@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCourse;
 
 use App\Course;
 
@@ -21,27 +22,33 @@ class CoursesController extends Controller {
 
     public function create() {
 
-        $title = 'Create Course';
+        $data = array(
+            'title' => 'Create Course',
+            'body_field' => 'Course Description',
 
-        return view('admin.courses.create')->with('title', $title);
+            // form selectors used in template conditionsals to build layouts
+            'title_field' => 'Course Title', // db title allows reusable partial
+            'form_for' => 'course',     // course or lesson
+            'form_type' => 'create'       // edit or create
+        );
 
+        return view('admin.courses.create')->with($data);
     }
 
-    public function store() {
+    public function store(Course $course) {
 
-        // new instance of course model
-        $course = new Course();
+        $attributes = request()->validate([
+            'title' => ['required', 'min:5', 'max:255'],
+            'slug' => 'nullable',
+            'headline' => ['max:255'],
+            'body' => 'nullable',
+            'price' => ['required', 'numeric'],
+            'image' => 'nullable',
+        ]);
 
-        // set the fields
-        $course->title = request('title');
-        $course->description = request('description');
-        $course->price = request('price');
+        Course::create($attributes);
 
-        // persist the database
-        $course->save();
-
-        // redirect to main courses page
-        return redirect('admin/courses');
+        return redirect()->route('admin.courses.index');
 
     }
 
@@ -49,41 +56,67 @@ class CoursesController extends Controller {
 
         $title = 'Course';
 
-        return view('courses.show', compact('title', 'course'));
+        return view('admin.courses.show', compact('title', 'course'));
 
     }
 
     public function edit(Course $course) {
 
-        $title = 'Courses Example';
+        $data = array(
+            'title' => 'Edit Course',
+            'title_field' => 'Course Title',
+            'body_field' => 'Course Description',
 
-        // load view and pass course data
-        return view('admin.courses.edit', compact('title', 'course'));
+            // form selectors used in template conditionsals to build layouts
+            'form_for' => 'course',     // course or lesson
+            'form_type' => 'edit'       // edit or create
+        );
+
+        return view('admin.courses.edit', compact('course'))->with($data);
     }
 
+    public function update(Course $course) {
 
-    public function update($id) {
+        switch(request()->input('action')) {
 
-        // fetch course data or return 404
-        $course = Course::findOrFail($id);
+            case 'save':
 
-        // re-set the fields
-        $course->title = request('title');
-        $course->description = request('description');
-        $course->price = request('price');
-        // update the database
+                $course->update(request()->validate([
+                    'title' => ['required', 'min:5', 'max:255'],
+                    'slug' => 'nullable',
+                    'headline' => ['max:255'],
+                    'body' => 'nullable',
+                    'price' => ['required', 'numeric'],
+                    'image' => 'nullable',
+                ]));
 
-        $course->save();
-        // redirect to main courses page
-        return redirect('admin/courses');
+                return redirect("admin/courses/$course->id/edit");
+                break;
+
+            case 'save_close':
+
+                $course->update(request()->validate([
+                    'title' => ['required', 'min:5', 'max:255'],
+                    'slug' => 'nullable',
+                    'headline' => ['max:255'],
+                    'body' => 'nullable',
+                    'price' => ['required', 'numeric'],
+                    'image' => 'nullable',
+                ]));
+
+                return redirect('admin/courses');
+                break;
+
+            case 'cancel':
+                return redirect('admin/courses');
+                break;
+        }
     }
 
     public function destroy(Course $course) {
 
-        // fetch course data and delete it
         $course->delete();
 
-        // redirect to main courses page
         return redirect('admin/courses');
     }
 }

@@ -1,39 +1,51 @@
-p + h2,
-p + h3{margin-top: 2rem;}
+// ==========================================================================
+// -- Spacing --
+// ==========================================================================
+
+// remove top margin from paragraph if it directly follows a heading
+h1, h2, h3, h4, h5, h6 {
+  + p {
+    margin-top: 0;
+  }
+}
+
+// p + * {
+//   margin-top: $gutter;
+// }
+
+p + *:not(h1,h2), ul + * {
+  margin-top: $gutter;
+}
 
 
-// --------------------------------------------------------------------------
-// Headings
-// --------------------------------------------------------------------------
-
-// create heading font sizes
+// ==========================================================================
+// -- Headings --
+// ==========================================================================
 @for $size from 1 through length($heading-sizes) {
 	h#{$size} {
     font-size: nth($heading-sizes, $size);
     font-weight: 500;
+    line-height: 1.2;
 	}
 }
 
 .lead{
-	font-size: 1.3rem;
+	font-size: 1.25rem;
 	font-weight: 300;
 }
-// page title
 
-
+// title, subtitle and headline are a pain in the ass
+// decide how they work before you got changing them again!!!
 .title{
   font-size: 2.25rem;
   line-height: 2.5rem;
+  font-weight: 700;
 }
 
-
-//
 .headline {
   color: $headline-color;
   font-weight: $headline-font-weight;
   font-size: 1.3rem;
-  margin-bottom: $margin;
-  text-transform: uppercase;
   // @include tablet {font-size: 3rem;}
   // @include desktop {font-size: 4rem;}
   // @include large-screen {font-size: 4.5rem;}

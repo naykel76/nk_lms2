@@ -1,84 +1,74 @@
 @extends('admin.layouts.admin-content')
 @section('title', $title)
 
+@section('toolbar')
+<div class="toolbar ">
+  <h1 class="my">{{ $title }}</h1>
+</div>
+@endsection
+
 @section('content')
 
+<form id="frm" method="POST" action="{{ route('admin.courses.update', $course->id) }}">
 
-<div class="px">
-  <div class="bx mb">
-    <form method="POST" action="{{ route('admin.courses.update', $course->id) }}">
+  @csrf
+  @method('PATCH')
 
-      @csrf
-      @method('PATCH')
+  @include('admin.partials.frm-attr-title-alias')
 
-      <div class="row">
-        <div class="col-md-80">
-          <label for="title">Course Title</label>
-          <input type="text" name="title" placeholder="Course title" value="{{ $course->title}}" />
-        </div>
+  @include('admin.partials.frm-attr-headline')
 
-        <div class="col-md-20">
-          <label for="price">Price</label>
-          <input type="text" name="price" placeholder="Price" value="{{ $course->price}}" />
-        </div>
-      </div>
+  @include('admin.partials.frm-attr-image-price')
 
-      <div class="row">
-        <div class="col">
-          <label for="slug">Course URL Alias</label>
-          <input type="text" name="slug" placeholder="URL Alias" value="{{ $course->slug}}" />
-        </div>
-      </div>
+  @include('admin.partials.frm-attr-body-cke')
 
-      <div class="row">
-        <div class="col">
-          <label for="description">Course Description</label>
-          <textarea name="description">{{ $course->description }}</textarea>
-        </div>
-      </div>
+  @include('admin.partials.frm-toolbar-edit')
 
-      <div class="row">
-        <div class="col">
-          <button type="submit" class="btn-primary">Update</button>
-        </div>
-      </div>
-
-    </form>
-  </div>
-
-</div>
+</form>
 
 @endsection
 
 @section('side-bar')
-<table>
-  <thead>
-    <tr>
-      <th>Lesson</th>
-      <th width="15%" class="txt-ctr">Actions</th>
-    </tr>
 
-    @foreach ($course->lessons as $lesson)
-    <tr>
-      <td>{{ $lesson->title }}</td>
-      <td class="txt-ctr">
-        <a href="{{ route('admin.lessons.edit', $lesson->id) }}" class="btn sm success">Edit</a>
+{{-- Add new lesson --}}
+<form method="POST" action="/admin/courses/{{ $course->id }}/lessons" class="light pxy-sm mb">
 
-        <form method="POST" class="dilb" action="{{ route('admin.courses.destroy', $course->id) }}">
+  <h3>Add New Lesson</h3>
 
-          {{ method_field('DELETE') }}
-          {{ csrf_field() }}
+  @csrf
 
-          <button type="submit" class="btn sm danger" onclick="return confirm('Are you sure?')">Delete</button>
+  <div class="frm-row">
+    <input name='title' type="text" placeholder="Enter Lesson Title">
+  </div>
 
-        </form>
+  <div class="frm-row">
+    <button type="submit" class="btn success sm">Create Lesson</button>
+  </div>
 
-      </td>
-    </tr>
-    @endforeach
+</form>
 
-  </thead>
-</table>
+
+
+<h3>Lessons</h3>
+
+@foreach ($course->lessons as $lesson)
+
+<div class="pxy-sm bdr">
+  {{ $lesson->title }}
+  <br>
+
+  <form method="POST" class="txt-r" action="{{ route('admin.lessons.destroy', $lesson->id) }}">
+
+    {{ method_field('DELETE') }}
+    {{ csrf_field() }}
+
+    <a href="{{ route('admin.lessons.edit', [$lesson->id]) }}" class="btn sm success">Edit</a>
+
+    <button type="submit" class="btn sm danger" onclick="return confirm('Are you sure?')">Delete</button>
+
+  </form>
 </div>
+
+@endforeach
 
 @endsection
