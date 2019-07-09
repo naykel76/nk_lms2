@@ -60,5 +60,26 @@ class DatabaseSeeder extends Seeder
             'image' => '',
             'body' => ''
         ]);
+
+        DB::table('course_modules')->insert([
+            'course_id' => '1',
+            'title' => 'module One',
+            'slug' => 'module-one',
+            'order' => 1
+        ]);
+
+        DB::table('course_modules')->insert([
+            'course_id' => '1',
+            'title' => 'module Two',
+            'slug' => 'module-two',
+            'order' => 3
+        ]);
+
+        DB::table('course_modules')->insert([
+            'course_id' => '1',
+            'title' => 'module Three',
+            'slug' => 'module-three',
+            'order' => 2
+        ]);
     }
 }

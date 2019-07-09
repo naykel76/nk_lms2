@@ -8,9 +8,15 @@ class Course extends Model {
 
     protected $guarded = [];
 
-    public function lessons() {
+    // public function lessons() {
 
-        return $this->hasMany(Lesson::class);
+    //     return $this->hasMany(Lesson::class);
+
+    // }
+
+    public function courseModules() {
+
+        return $this->hasMany(CourseModule::class);
 
     }
 }
