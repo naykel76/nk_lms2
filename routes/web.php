@@ -13,7 +13,3 @@ Route::prefix('admin')->name('admin.')->group( function() {
 
     Route::post('courses/{course}/lessons', 'Admin\LessonsController@store');
 });
-
-// Route::post('admin/courses/{course}/lessons', 'Admin\LessonsController@store');
-
-//
