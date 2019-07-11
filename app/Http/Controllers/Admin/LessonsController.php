@@ -90,7 +90,6 @@ class LessonsController extends Controller {
                 ]));
 
                 return redirect("admin/lessons/$lesson->id/edit");
-
                 break;
 
             case 'save_close':
@@ -103,12 +102,10 @@ class LessonsController extends Controller {
                 ]));
 
                 return redirect("admin/courses/$lesson->course_id/edit");
-
                 break;
 
             case 'cancel':
                 return redirect("admin/courses/$lesson->course_id/edit");
-
                 break;
         }
     }

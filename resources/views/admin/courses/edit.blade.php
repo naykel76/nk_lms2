@@ -30,45 +30,80 @@
 
 @section('side-bar')
 
-{{-- Add new lesson --}}
-<form method="POST" action="/admin/courses/{{ $course->id }}/lessons" class="light pxy-sm mb">
-
-  <h3>Add New Lesson</h3>
+{{-- add new course module --}}
+<form method="POST" action="/admin/courses/{{ $course->id }}/course-modules" class="light pxy-sm mb">
 
   @csrf
 
   <div class="frm-row">
-    <input name='title' type="text" placeholder="Enter Lesson Title">
+
+    <input type="text" name="module_title" placeholder="Enter course module" class="{{ $errors->has('module_title') ? 'danger' : '' }}">
+
   </div>
 
   <div class="frm-row">
-    <button type="submit" class="btn success sm">Create Lesson</button>
+
+    <button type="submit" class="btn success">Add New Module</button>
+
   </div>
 
 </form>
 
 
 
-<h3>Lessons</h3>
+{{-- display course modules --}}
+<h2>Course Modules</h2>
+
+@if ($course->courseModules->count())
+
+@foreach ($course->courseModules as $courseModule)
+
+<div class="flexCon pxy light">
+
+  {{ $courseModule->title }}
+
+  <form method="POST" class="txt-r" action="{{ route('admin.course-modules.destroy', $courseModule->id) }}">
+
+    {{ method_field('DELETE') }}
+
+    {{ csrf_field() }}
+
+    {{-- Edit course model --}}
+    <a href="{{ route('admin.course-modules.edit', $courseModule->id) }}" class="btn sm success">Edit</a>
+
+    {{-- delete course module --}}
+    <button type="submit" class="btn sm danger" onclick="return confirm('Are you sure?')">Delete</button>
+    <hr>
+    <div class="px">Lessons</div>
+
+  </form>
+
+</div>
+
+@endforeach
+
+@endif
+
+{{-- <h3>Lessons</h3>
 
 @foreach ($course->lessons as $lesson)
 
 <div class="pxy-sm bdr">
   {{ $lesson->title }}
-  <br>
+<br>
 
-  <form method="POST" class="txt-r" action="{{ route('admin.lessons.destroy', $lesson->id) }}">
+<form method="POST" class="txt-r" action="{{ route('admin.lessons.destroy', $lesson->id) }}">
 
-    {{ method_field('DELETE') }}
-    {{ csrf_field() }}
+  {{ method_field('DELETE') }}
+  {{ csrf_field() }}
 
-    <a href="{{ route('admin.lessons.edit', [$lesson->id]) }}" class="btn sm success">Edit</a>
+  <a href="{{ route('admin.lessons.edit', [$lesson->id]) }}" class="btn sm success">Edit</a>
 
-    <button type="submit" class="btn sm danger" onclick="return confirm('Are you sure?')">Delete</button>
+  <button type="submit" class="btn sm danger" onclick="return confirm('Are you sure?')">Delete</button>
 
-  </form>
+</form>
 </div>
 
-@endforeach
+@endforeach --}}
 
 @endsection
