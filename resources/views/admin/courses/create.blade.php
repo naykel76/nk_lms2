@@ -1,40 +1,47 @@
-@extends('admin.layouts.admin-content')
+@extends('admin.layouts.admin-3-column')
+
 @section('title', $title)
 
+
+{{-- toolbar --}}
 @section('toolbar')
-@include('admin.partials.frm-toolbar-create')
+@component('admin.components.toolbar-create', ['form_name' => 'create_course'])@endcomponent
 @endsection
 
 @section('content')
 
-
-<form id="frm" method="POST" action="{{ route('admin.courses.store') }}">
+<form id="create_course" class="nm" method="POST" action="{{ route('admin.courses.store') }}">
 
   @csrf
 
-  @include('admin.partials.frm-attr-title-alias')
+  <div class="wrapper">
 
-  @include('admin.partials.frm-attr-headline')
+    <div class="row align-stretch">
 
-  @include('admin.partials.frm-attr-image-price')
 
-  @include('admin.partials.frm-attr-body-cke')
+      <div class="col-md-25 primary py">
 
-  @include('admin.partials.frm-toolbar-create')
+        <h2>Course Details</h2>
+
+        @include('admin.components.frm-title')
+        @include('admin.components.frm-alias')
+        @include('admin.components.frm-headline')
+        @include('admin.components.frm-image')
+
+      </div>
+
+      <div class="col-md-75 pxy">
+
+        @include('admin.partials.error')
+
+        @include('admin.components.frm-cke')
+
+      </div>
+
+    </div>
+
+  </div>
 
 </form>
-
-
-@endsection
-
-
-@section('side-bar')
-<div class="bx danger">
-  <div class="bx-title mb">To Do's</div>
-  <ul>
-    <li>Image picker</li>
-    <li>Meta fields</li>
-  </ul>
-</div>
 
 @endsection

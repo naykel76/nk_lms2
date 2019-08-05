@@ -3,25 +3,26 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCourse;
 
 use App\Course;
 
-class CoursesController extends Controller {
+class CoursesController extends Controller
+{
 
-    public function index() {
-
+    public function index()
+    {
         $title = 'Courses';
-
         $courses = Course::all();
 
         return view('admin.courses.index', compact('title', 'courses'));
-
     }
 
-    public function create() {
-
+    public function create()
+    {
         $data = array(
             'title' => 'Create Course',
             'body_field' => 'Course Description',
@@ -35,33 +36,41 @@ class CoursesController extends Controller {
         return view('admin.courses.create')->with($data);
     }
 
-    public function store(Course $course) {
+    public function store(Request $request)
+    {
+        $slug = $request->input('slug');
+        $title = $request->input('title');
 
         $attributes = request()->validate([
             'title' => ['required', 'min:5', 'max:255'],
             'slug' => 'nullable',
             'headline' => ['max:255'],
             'body' => 'nullable',
-            'price' => ['required', 'numeric'],
+            'price' => ['nullable', 'numeric'],
             'image' => 'nullable',
         ]);
+
+        /**
+         * if the slug is empty create one
+         */
+        if ($slug === null) {
+            $attributes['slug'] = Str::slug($title, '-');
+        }
 
         Course::create($attributes);
 
         return redirect()->route('admin.courses.index');
-
     }
 
-    public function show(Course $course) {
-
+    public function show(Course $course)
+    {
         $title = 'Course';
 
         return view('admin.courses.show', compact('title', 'course'));
-
     }
 
-    public function edit(Course $course) {
-
+    public function edit(Course $course)
+    {
         $data = array(
             'title' => 'Edit Course',
             'title_field' => 'Course Title',
@@ -75,9 +84,9 @@ class CoursesController extends Controller {
         return view('admin.courses.edit', compact('course'))->with($data);
     }
 
-    public function update(Course $course) {
-
-        switch(request()->input('action')) {
+    public function update(Course $course)
+    {
+        switch (request()->input('action')) {
 
             case 'save':
 
@@ -86,7 +95,7 @@ class CoursesController extends Controller {
                     'slug' => 'nullable',
                     'headline' => ['max:255'],
                     'body' => 'nullable',
-                    'price' => ['required', 'numeric'],
+                    'price' => ['nullable', 'numeric'],
                     'image' => 'nullable',
                 ]));
 
@@ -100,7 +109,7 @@ class CoursesController extends Controller {
                     'slug' => 'nullable',
                     'headline' => ['max:255'],
                     'body' => 'nullable',
-                    'price' => ['required', 'numeric'],
+                    'price' => ['nullable', 'numeric'],
                     'image' => 'nullable',
                 ]));
 
@@ -113,8 +122,8 @@ class CoursesController extends Controller {
         }
     }
 
-    public function destroy(Course $course) {
-
+    public function destroy(Course $course)
+    {
         $course->delete();
 
         return redirect('admin/courses');

@@ -4,15 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\CourseModule;
+
 class Course extends Model {
 
     protected $guarded = [];
-
-    // public function lessons() {
-
-    //     return $this->hasMany(Lesson::class);
-
-    // }
 
     public function courseModules() {
 

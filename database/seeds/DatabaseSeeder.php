@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
 
 
         DB::table('lessons')->insert([
-            'course_id' => '1',
+            'course_module_id' => '1',
             'title' => 'Lesson One',
             'slug' => 'lesson-one',
             'image' => '',
@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('lessons')->insert([
-            'course_id' => '1',
+            'course_module_id' => '1',
             'title' => 'Lesson Two',
             'slug' => 'lesson-two',
             'image' => '',
@@ -54,7 +54,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('lessons')->insert([
-            'course_id' => '1',
+            'course_module_id' => '1',
             'title' => 'Lesson Three',
             'slug' => 'lesson-three',
             'image' => '',

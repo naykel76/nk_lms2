@@ -10,6 +10,13 @@ use App\CourseModule;
 
 class CourseModulesController extends Controller
 {
+    public function index()
+    {
+        $title = 'Course Modules List';
+        $modules = CourseModule::all();
+
+        return view('admin.course-modules.index', compact('title', 'modules'));
+    }
 
     public function store(Course $course)
     {
@@ -47,9 +54,10 @@ class CourseModulesController extends Controller
     }
 
 
-    public function update(CourseModule $courseModule) {
+    public function update(CourseModule $courseModule)
+    {
 
-        switch(request()->input('action')) {
+        switch (request()->input('action')) {
 
             case 'save':
 
@@ -87,7 +95,6 @@ class CourseModulesController extends Controller
         $courseModule->update(request(['title']));
 
         return back();
-
     }
 
     public function destroy(CourseModule $courseModule)

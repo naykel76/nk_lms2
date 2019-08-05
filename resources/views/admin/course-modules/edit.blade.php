@@ -1,74 +1,34 @@
-@extends('admin.layouts.admin-content')
+{{---------------------------------------------------------------------------
+  Edit course-module form
+---------------------------------------------------------------------------}}
+@extends('admin.layouts.admin-3-column')
+
 @section('title', $title)
 
+
+{{-- toolbar --}}
 @section('toolbar')
-<div class="toolbar ">
-  <h1 class="my">{{ $title }}</h1>
-</div>
+@component('admin.components.toolbar-edit', ['form_name' => 'edit_module'])@endcomponent
 @endsection
 
 @section('content')
-<form id="frm" method="POST" action="{{ route('admin.course-modules.update', $courseModule->id) }}">
 
-  @csrf
-  @method('PATCH')
+<div class="container pxy-xl">
 
-  <div class="row nmx">
+  <form id="edit_module" method="POST" action="{{ route('admin.course-modules.update', $courseModule->id) }}">
 
-    <label class="col-10 np" for="title">{{ $title_label }}</label>
-    <input type="text" name="title" placeholder="{{ $title_label }}" class="col-40 {{ $errors->has('title') ? 'danger' : '' }}" value="{{ $courseModule->title }}" required />
+    @csrf
+    @method('PATCH')
 
-    <label class="col-10 txt-r" for='slug'>URL Alias</label>
-    <input class="col-40" name='slug' type="text" placeholder="Auto-generated from title" value="{{ $courseModule->slug }}">
+    <div class="row nmx">
 
-  </div>
-
-  <div class="row">
-
-    <div class="col">
-
-      <button class="btn success" type="submit" name="action" value="save">Save</button>
-
-      <button class="btn" type="submit" name="action" value="save_close">Save and Close</button>
-
-      <button class="btn danger" type="submit" name="action" value="cancel">Cancel</button>
+      <label for="title">{{ $title_label }}</label>
+      <input type="text" name="title" placeholder="{{ $title_label }}" class="{{ $errors->has('title') ? 'danger' : '' }}" value="{{ $courseModule->title }}" required />
 
     </div>
 
-  </div>
+  </form>
 
-
-</form>
-
-@endsection
-
-@section('side-bar')
-
-<h3>Lessons</h3>
-
-
-
-
-{{--
-
-@foreach ($course->lessons as $lesson)
-
-<div class="pxy-sm bdr">
-  {{ $lesson->title }}
-<br>
-
-<form method="POST" class="txt-r" action="{{ route('admin.lessons.destroy', $lesson->id) }}">
-
-  {{ method_field('DELETE') }}
-  {{ csrf_field() }}
-
-  <a href="{{ route('admin.lessons.edit', [$lesson->id]) }}" class="btn sm success">Edit</a>
-
-  <button type="submit" class="btn sm danger" onclick="return confirm('Are you sure?')">Delete</button>
-
-</form>
 </div>
-
-@endforeach --}}
 
 @endsection

@@ -3,15 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\course;
+
+use App\CourseModule;
 
 class Lesson extends Model {
 
     protected $guarded = [];
 
-    public function course() {
+    public function courseModule() {
 
-        return $this->belongsTo(Course::class);
+        return $this->belongsTo(CourseModule::class);
 
     }
 }

@@ -1,5 +1,14 @@
 .toolbar{
   background: #efefef;
-  padding: .5rem 2rem;
   border-bottom: 1px solid rgba(0,0,0,0.15);
 }
+
+#cke_article-ckeditor {
+  width: 100%;
+  // min-height: 50vh;
+}
+
+#cke_1_contents{
+  min-height: 70vh !important;
+}
+// cke_inner

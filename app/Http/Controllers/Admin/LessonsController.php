@@ -6,43 +6,19 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Lesson;
-use App\Course;
+use App\CourseModule;
 
 class LessonsController extends Controller {
 
-    public function index() {
+    public function store(CourseModule $courseModule) {
 
-        $title = 'Lessons';
-
-        $lessons = Lesson::all();
-
-        return view('admin.lessons.index', compact('lessons', 'title'));
-
-    }
-
-    public function create(Course $course) {
-
-        $data = array(
-            'title' => 'Create Lesson',
-
-            // label fields, allows reusable partial
-            'title_field' => 'Lesson Title',
-            'body_field' => 'Lesson Description',
-
-            // form selectors used in template conditionsals to build layouts
-            'form_for' => 'lesson', // course or lesson
-            'form_type' => 'create' // edit or create
-        );
-
-        return view('admin.lessons.create')->with($data);
-
-    }
-
-    public function store(Course $course) {
+        request()->validate([
+            'lesson_title' => 'required'
+        ]);
 
         Lesson::create([
-            'course_id' => $course->id,
-            'title' => request('title')
+            'course_module_id' => $courseModule->id,
+            'title' => request('lesson_title')
         ]);
 
         return back();
@@ -101,11 +77,11 @@ class LessonsController extends Controller {
                     'image' => 'nullable',
                 ]));
 
-                return redirect("admin/courses/$lesson->course_id/edit");
+                return redirect("admin/course-modules/$lesson->course_module_id/edit");
                 break;
 
             case 'cancel':
-                return redirect("admin/courses/$lesson->course_id/edit");
+                return redirect("admin/course-modules/$lesson->course_module_id/edit");
                 break;
         }
     }

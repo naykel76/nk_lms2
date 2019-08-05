@@ -20,7 +20,7 @@ class CreateCoursesTable extends Migration
             $table->text('headline')->nullable();
             $table->text('image')->nullable();
             $table->text('body')->nullable();
-            $table->float('price', 8, 2);
+            $table->float('price', 8, 2)->nullable();
             $table->timestamps();
         });
     }
