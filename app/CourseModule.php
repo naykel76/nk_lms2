@@ -4,19 +4,22 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CourseModule extends Model {
+class CourseModule extends Model
+{
 
     protected $guarded = [];
 
-    public function course() {
+    public function course()
+    {
 
         return $this->belongsTo(Course::class);
-
     }
 
-    public function lessons() {
+    // a course module hasMany lessons
+
+    public function lessons()
+    {
 
         return $this->hasMany(Lesson::class);
-
     }
 }

@@ -413,12 +413,10 @@ template {
 p + *:not(h1):not(h2),
 h1 + *,
 h2 + *,
-ul + * {
+ul + *,
+.wrapper + *,
+.container + * {
   margin-top: 1rem;
-}
-
-pre + * {
-  margin-top: 3rem;
 }
 
 .wrapper,
@@ -1835,6 +1833,10 @@ input.danger {
   width: 100%;
 }
 
+form {
+  margin: 0;
+}
+
 form .row {
   -webkit-box-align: center;
           align-items: center;
@@ -2678,11 +2680,6 @@ li.L9 {
 
 .price {
   font-size: 2rem;
-}
-
-.toolbar {
-  background: #efefef;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 #cke_article-ckeditor {

@@ -38,16 +38,10 @@ class CourseModulesController extends Controller
     {
 
         $data = array(
-
             'title' => 'Edit Course Module',        // as displayed on the page as main heading and site the title
-
             // label fields, allows reusable components
             'title_label' => 'Module Title',        // as displayed on the 'title' input label
             // 'body_label' => 'Lesson Description',   // as displayed on the 'body' input label
-
-            // form selectors used in template conditionsals to build layouts
-            // 'form_for' => 'lesson', // course or lesson
-            // 'form_type' => 'create' // edit or create
         );
 
         return view('admin.course-modules.edit', compact('courseModule'))->with($data);

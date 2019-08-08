@@ -1,4 +1,4 @@
-<div class="copyright light mt-lg">
+<div class="copyright light">
   <p> Copyright &copy; <?php echo date("Y") ;?> - {{env('APP_NAME')}} | Email: {{env('APP_EMAIL', 'email')}}<br>
     NAYKEL Technologies. Bridging the gap between people and technology.</p>
 </div>

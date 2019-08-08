@@ -16808,7 +16808,7 @@ return jQuery;
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
  * @license
  * Lodash <https://lodash.com/>
- * Copyright JS Foundation and other contributors <https://js.foundation/>
+ * Copyright OpenJS Foundation and other contributors <https://openjsf.org/>
  * Released under MIT license <https://lodash.com/license>
  * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
  * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -16819,7 +16819,7 @@ return jQuery;
   var undefined;
 
   /** Used as the semantic version number. */
-  var VERSION = '4.17.11';
+  var VERSION = '4.17.15';
 
   /** Used as the size to enable large array optimizations. */
   var LARGE_ARRAY_SIZE = 200;
@@ -19478,16 +19478,10 @@ return jQuery;
         value.forEach(function(subValue) {
           result.add(baseClone(subValue, bitmask, customizer, subValue, value, stack));
         });
-
-        return result;
-      }
-
-      if (isMap(value)) {
+      } else if (isMap(value)) {
         value.forEach(function(subValue, key) {
           result.set(key, baseClone(subValue, bitmask, customizer, key, value, stack));
         });
-
-        return result;
       }
 
       var keysFunc = isFull
@@ -20411,8 +20405,8 @@ return jQuery;
         return;
       }
       baseFor(source, function(srcValue, key) {
+        stack || (stack = new Stack);
         if (isObject(srcValue)) {
-          stack || (stack = new Stack);
           baseMergeDeep(object, source, key, srcIndex, baseMerge, customizer, stack);
         }
         else {
@@ -22229,7 +22223,7 @@ return jQuery;
       return function(number, precision) {
         number = toNumber(number);
         precision = precision == null ? 0 : nativeMin(toInteger(precision), 292);
-        if (precision) {
+        if (precision && nativeIsFinite(number)) {
           // Shift with exponential notation to avoid floating-point issues.
           // See [MDN](https://mdn.io/round#Examples) for more details.
           var pair = (toString(number) + 'e').split('e'),
@@ -23412,7 +23406,7 @@ return jQuery;
     }
 
     /**
-     * Gets the value at `key`, unless `key` is "__proto__".
+     * Gets the value at `key`, unless `key` is "__proto__" or "constructor".
      *
      * @private
      * @param {Object} object The object to query.
@@ -23420,6 +23414,10 @@ return jQuery;
      * @returns {*} Returns the property value.
      */
     function safeGet(object, key) {
+      if (key === 'constructor' && typeof object[key] === 'function') {
+        return;
+      }
+
       if (key == '__proto__') {
         return;
       }
@@ -27220,6 +27218,7 @@ return jQuery;
           }
           if (maxing) {
             // Handle invocations in a tight loop.
+            clearTimeout(timerId);
             timerId = setTimeout(timerExpired, wait);
             return invokeFunc(lastCallTime);
           }
@@ -31606,9 +31605,12 @@ return jQuery;
       , 'g');
 
       // Use a sourceURL for easier debugging.
+      // The sourceURL gets injected into the source that's eval-ed, so be careful
+      // with lookup (in case of e.g. prototype pollution), and strip newlines if any.
+      // A newline wouldn't be a valid sourceURL anyway, and it'd enable code injection.
       var sourceURL = '//# sourceURL=' +
-        ('sourceURL' in options
-          ? options.sourceURL
+        (hasOwnProperty.call(options, 'sourceURL')
+          ? (options.sourceURL + '').replace(/[\r\n]/g, ' ')
           : ('lodash.templateSources[' + (++templateCounter) + ']')
         ) + '\n';
 
@@ -31641,7 +31643,9 @@ return jQuery;
 
       // If `variable` is not specified wrap a with-statement around the generated
       // code to add the data object to the top of the scope chain.
-      var variable = options.variable;
+      // Like with sourceURL, we take care to not check the option's prototype,
+      // as this configuration is a code injection vector.
+      var variable = hasOwnProperty.call(options, 'variable') && options.variable;
       if (!variable) {
         source = 'with (obj) {\n' + source + '\n}\n';
       }
@@ -33846,10 +33850,11 @@ return jQuery;
     baseForOwn(LazyWrapper.prototype, function(func, methodName) {
       var lodashFunc = lodash[methodName];
       if (lodashFunc) {
-        var key = (lodashFunc.name + ''),
-            names = realNames[key] || (realNames[key] = []);
-
-        names.push({ 'name': methodName, 'func': lodashFunc });
+        var key = lodashFunc.name + '';
+        if (!hasOwnProperty.call(realNames, key)) {
+          realNames[key] = [];
+        }
+        realNames[key].push({ 'name': methodName, 'func': lodashFunc });
       }
     });
 
@@ -49350,7 +49355,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleBuildError: Module build failed (from ./node_modules/sass-loader/lib/loader.js):\n\r\n@import '~nk_jtb/scss/nk_jtb';\r\n       ^\r\n      Can't find stylesheet to import.\n  ╷\n5 │ @import '~nk_jtb/scss/nk_jtb';\r\n  │         ^^^^^^^^^^^^^^^^^^^^^\n  ╵\n  stdin 5:9  root stylesheet\r\n      in C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\resources\\sass\\app.scss (line 5, column 9)\n    at runLoaders (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\webpack\\lib\\NormalModule.js:302:20)\n    at C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\loader-runner\\lib\\LoaderRunner.js:367:11\n    at C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\loader-runner\\lib\\LoaderRunner.js:233:18\n    at context.callback (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\loader-runner\\lib\\LoaderRunner.js:111:13)\n    at render (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass-loader\\lib\\loader.js:52:13)\n    at Function.$2 (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:25021:48)\n    at yQ.$2 (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:15635:15)\n    at wS.lY (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:9376:42)\n    at wS.lX (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:9378:32)\n    at j7.wu (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:8647:46)\n    at wc.$0 (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:8783:7)\n    at Object.f4 (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:1473:80)\n    at an.bf (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:8700:3)\n    at jl.bf (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:8642:25)\n    at jl.cK (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:8629:12)\n    at qf.cK (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:8411:35)\n    at Object.m (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:1363:19)\n    at C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:4964:51\n    at zk.a (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:1371:71)\n    at zk.$2 (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:8430:23)\n    at xQ.$2 (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:8425:25)\n    at wS.lY (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:9376:42)\n    at wS.lX (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:9378:32)\n    at j7.wu (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:8647:46)\n    at wc.$0 (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:8783:7)\n    at Object.f4 (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:1473:80)\n    at an.bf (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:8700:3)\n    at jl.bf (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:8642:25)\n    at jl.cK (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:8629:12)\n    at Object.eval (eval at FX (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:638:8), <anonymous>:3:37)\n    at wS.lY (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:9376:42)\n    at wS.lX (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:9378:32)\n    at j7.wu (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:8647:46)\n    at wc.$0 (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:8783:7)\n    at Object.f4 (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:1473:80)\n    at an.bf (C:\\Users\\nayke\\Dropbox\\WebDev\\nk_lms\\node_modules\\sass\\sass.dart.js:8700:3)");
 
 /***/ }),
 

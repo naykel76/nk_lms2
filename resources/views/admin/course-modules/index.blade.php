@@ -1,6 +1,12 @@
 @extends('admin.layouts.admin')
 @section('title', $title)
 
+
+@section('toolbar')
+<div class="pxy blue">Add modules from the <em>course</em> page</div>
+@endsection
+
+
 @section('content')
 
 <table class="tbl striped">
@@ -8,7 +14,7 @@
     <tr>
       <th>ID #</th>
       <th>Module</th>
-      <th class="w100">CourseId</th>
+      <th class="w100">Course ID</th>
       <th class="w100">Order</th>
       <th class="w200 txt-ctr">Actions</th>
     </tr>
@@ -22,7 +28,8 @@
     <td></td>
     <td class="txt-ctr">
 
-      <a href="{{ route('admin.course-modules.edit', $module->id) }}" class="btn success">Edit</a>
+      {{-- <a href="{{ route('admin.course-modules.edit', $module->id) }}" class="btn success">Edit</a> --}}
+      <a href="/admin/course-modules/{{ $module->id }}/edit" class="btn success">Edit</a>
 
       <form method="POST" class="dilb" action="{{ route('admin.course-modules.destroy', $module->id) }}">
 

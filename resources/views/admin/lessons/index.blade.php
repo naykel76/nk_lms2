@@ -2,46 +2,52 @@
 @section('title', $title)
 
 @section('content')
-<h1>{{ $title }}</h1>
 
-<div class="pr-lg">
+@section('toolbar')
+{{-- <a href="{{ route('admin.lessons.create') }}" class="btn success">Add New Lesson</a> --}}
+<div class="pxy blue">Add lessons from the <em>course module</em> page</div>
+@endsection
 
-  <a href="{{ route('admin.lessons.create') }}" class="btn primary">Add New</a>
-  <br>
-  <br>
-  <style></style>
-  <table>
-    <thead>
-      <tr>
-        <th>Course</th>
-        <th>Order</th>
-        <th width="15%">Actions</th>
-      </tr>
+<table class="tbl striped">
+  <thead>
+    <tr>
+      <th>ID #</th>
+      <th>Lesson</th>
+      <th class="w100">Module ID</th>
+      <th class="w200 txt-ctr">Actions</th>
+    </tr>
+  </thead>
 
-      @foreach ($lessons as $lesson)
-      <tr>
-        <td>{{ $lesson->title }}</td>
 
-        <td> </td>
+  @foreach ($lessons as $lesson)
 
-        <td>
-          <a href="{{ route('admin.lessons.edit', $lesson->id) }}" class="btn sm success">Edit</a>
+  <tr>
+    <td>{{ $lesson->id }}</td>
+    <td>{{ $lesson->title }}</td>
+    <td>{{ $lesson->course_module_id }}</td>
 
-          <form method="POST" class="dilb" action="{{ route('admin.lessons.destroy', $lesson->id) }}">
+    <td class="txt-ctr">
+      <a href="{{ route('admin.lessons.edit', $lesson->id) }}" class="btn success">Edit</a>
 
-            {{ method_field('DELETE') }}
-            {{ csrf_field() }}
+      <form method="POST" class="dilb" action="">
 
-            <button type="submit" class="btn sm danger" onclick="return confirm('Are you sure?')">Delete</button>
+        {{ method_field('DELETE') }}
+        {{ csrf_field() }}
 
-          </form>
+        <button type="submit" class="btn danger" onclick="return confirm('Are you sure?')">Delete</button>
 
-        </td>
-      </tr>
-      @endforeach
+      </form>
 
-    </thead>
-  </table>
-</div>
+
+
+
+    </td>
+  </tr>
+  @endforeach
+
+
+
+
+</table>
 
 @endsection

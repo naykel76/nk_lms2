@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreCourse;
+use Illuminate\Support\Facades\DB;
 
 use App\Course;
 
@@ -15,7 +15,7 @@ class CoursesController extends Controller
 
     public function index()
     {
-        $title = 'Courses';
+        $title = 'Courses List';
         $courses = Course::all();
 
         return view('admin.courses.index', compact('title', 'courses'));
@@ -28,7 +28,8 @@ class CoursesController extends Controller
             'body_field' => 'Course Description',
 
             // form selectors used in template conditionsals to build layouts
-            'title_field' => 'Course Title', // db title allows reusable partial
+            'field_title' => 'Course Title', // db title allows reusable partial
+
             'form_for' => 'course',     // course or lesson
             'form_type' => 'create'       // edit or create
         );
@@ -73,7 +74,7 @@ class CoursesController extends Controller
     {
         $data = array(
             'title' => 'Edit Course',
-            'title_field' => 'Course Title',
+            'field_title' => 'Course Title',
             'body_field' => 'Course Description',
 
             // form selectors used in template conditionsals to build layouts

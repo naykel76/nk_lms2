@@ -1,26 +1,17 @@
-@extends('admin.layouts.admin-content')
-@section('title', $title)
+{{---------------------------------------------------------------------------
+  Create new lesson form
+---------------------------------------------------------------------------}}
 
-@section('toolbar')
-@include('admin.components.frm-toolbar-create')
-@endsection
-
-@section('content')
-
-<form method="POST" action="{{ route('admin.lessons.store') }}">
+<form method="POST" action="/admin/course-modules/{{ $courseModule->id }}/lessons">
 
   @csrf
 
-
-  @include('admin.partials.frm-title-alias-new')
-
-  @include('admin.partials.frm-cke-new')
+  <div class="row">
+    <input type="text" name="lesson_title" placeholder="Enter lesson title" class="{{ $errors->has('lesson_title') ? 'danger' : '' }}">
+  </div>
 
   <div class="row">
-    <div class="col">
-      <button class="btn-success" type="submit" name="action" value="save">Create Lesson</button>
-      <button class="btn-danger" type="submit" name="action" value="cancel">Cancel</button>
-    </div>
+    <button type="submit" class="btn-success">Add Lesson</button>
   </div>
+
 </form>
-@endsection
