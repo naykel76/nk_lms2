@@ -19,12 +19,10 @@
 
     <div class="bx-primary">
 
-      @component('admin.components.input-title', ['field_title' => $field_title, 'input_value' => $course->title] )@endcomponent
-
-
-      @include('admin.components.frm-alias')
-      @include('admin.components.frm-headline')
-      @include('admin.components.frm-image')
+      @component('admin.components.input-title', ['field_title' => 'Course Title', 'input_value' => $course->title])@endcomponent
+      @component('admin.components.input-slug', ['field_title' => 'URL Alias', 'input_value' => $course->slug])@endcomponent
+      @component('admin.components.input-image', ['field_title' => 'Image URL','input_value' => $course->image])@endcomponent
+      @component('admin.components.input-headline', ['field_title' => 'Course Headline','input_value' => $course->headline])@endcomponent
 
     </div>
 
@@ -33,11 +31,9 @@
   <div class="col-md-75">
 
     @component('admin.components.toolbar-edit', ['form_name' => 'course_edit'])@endcomponent
-
     @include('admin.partials.error')
-    @include('admin.components.frm-cke')
-    <br>
-    @component('admin.components.toolbar-edit', ['form_name' => 'course_edit'])@endcomponent
+    @component('admin.components.input-cke', ['field_title' => 'TitleLabel','input_value' => $course->body])@endcomponent
+
   </div>
 
 
@@ -84,13 +80,3 @@
   @endforelse
 </div>
 @endsection
-
-{{-- @foreach ($courseModule->lessons as $lesson)
-
-      <div class="pxy-sm">
-        {{ $lesson->title }}
-<a href="{{ route('admin.course-modules.edit', $courseModule->id) }}" class="btn sm success">Edit</a>
-<button type="submit" class="btn sm danger" onclick="return confirm('Are you sure?')">Delete</button>
-</div>
-
-@endforeach --}}

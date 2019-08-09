@@ -9,7 +9,8 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run() {
+    public function run()
+    {
         // $this->call(UsersTableSeeder::class);
 
         DB::table('courses')->insert([
@@ -36,6 +37,26 @@ class DatabaseSeeder extends Seeder
             'price' => 84.99
         ]);
 
+        DB::table('course_modules')->insert([
+            'course_id' => '1',
+            'title' => 'module One',
+            'slug' => 'module-one',
+            'order' => 1
+        ]);
+
+        DB::table('course_modules')->insert([
+            'course_id' => '1',
+            'title' => 'module Two',
+            'slug' => 'module-two',
+            'order' => 3
+        ]);
+
+        DB::table('course_modules')->insert([
+            'course_id' => '1',
+            'title' => 'module Three',
+            'slug' => 'module-three',
+            'order' => 2
+        ]);
 
         DB::table('lessons')->insert([
             'course_module_id' => '1',
@@ -59,27 +80,6 @@ class DatabaseSeeder extends Seeder
             'slug' => 'lesson-three',
             'image' => '',
             'body' => ''
-        ]);
-
-        DB::table('course_modules')->insert([
-            'course_id' => '1',
-            'title' => 'module One',
-            'slug' => 'module-one',
-            'order' => 1
-        ]);
-
-        DB::table('course_modules')->insert([
-            'course_id' => '1',
-            'title' => 'module Two',
-            'slug' => 'module-two',
-            'order' => 3
-        ]);
-
-        DB::table('course_modules')->insert([
-            'course_id' => '1',
-            'title' => 'module Three',
-            'slug' => 'module-three',
-            'order' => 2
         ]);
     }
 }

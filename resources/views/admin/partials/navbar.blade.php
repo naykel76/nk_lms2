@@ -17,7 +17,6 @@
     <div class="flexCon align-m">
       <nav class="nav">
         <a href="{{  route('admin.courses.index') }}">Courses</a>
-        <a href="{{  route('admin.lessons.index') }}">Lessons</a>
         <a href="{{  route('admin.course-modules.index') }}">Modules</a>
       </nav>
 

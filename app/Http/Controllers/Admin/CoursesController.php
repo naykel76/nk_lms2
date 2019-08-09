@@ -21,18 +21,9 @@ class CoursesController extends Controller
         return view('admin.courses.index', compact('title', 'courses'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        $data = array(
-            'title' => 'Create Course',
-            'body_field' => 'Course Description',
-
-            // form selectors used in template conditionsals to build layouts
-            'field_title' => 'Course Title', // db title allows reusable partial
-
-            'form_for' => 'course',     // course or lesson
-            'form_type' => 'create'       // edit or create
-        );
+        $data = ['title' => 'Create Course'];
 
         return view('admin.courses.create')->with($data);
     }
@@ -72,15 +63,7 @@ class CoursesController extends Controller
 
     public function edit(Course $course)
     {
-        $data = array(
-            'title' => 'Edit Course',
-            'field_title' => 'Course Title',
-            'body_field' => 'Course Description',
-
-            // form selectors used in template conditionsals to build layouts
-            'form_for' => 'course',     // course or lesson
-            'form_type' => 'edit'       // edit or create
-        );
+        $data = ['title' => 'Create Course'];
 
         return view('admin.courses.edit', compact('course'))->with($data);
     }
@@ -126,7 +109,6 @@ class CoursesController extends Controller
     public function destroy(Course $course)
     {
         $course->delete();
-
         return redirect('admin/courses');
     }
 }

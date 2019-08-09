@@ -410,10 +410,10 @@ template {
   display: none !important;
 }
 
-p + *:not(h1):not(h2),
 h1 + *,
 h2 + *,
-ul + *,
+p + *:not(h1):not(h2),
+ul + *:not(h1):not(h2),
 .wrapper + *,
 .container + * {
   margin-top: 1rem;

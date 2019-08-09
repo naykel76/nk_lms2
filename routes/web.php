@@ -6,6 +6,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/admin/lessons', 'LessonsController@index');
+
 // Route::middleware(['auth'])->prefix('admin')->name('admin.')->group( function() {
 Route::prefix('admin')->name('admin.')->group(function () {
 
@@ -16,8 +18,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/courses/{course}/course-modules', 'Admin\CourseModulesController@store');
 
     // lessons
-    Route::resource('/lessons', 'Admin\LessonsController');
-    Route::post('/course-modules/{course_module}/lessons', 'Admin\LessonsController@store');
+    // Route::resource('/lessons', 'Admin\LessonsController');
+    // Route::post('/course-modules/{course_module}/lessons', 'Admin\LessonsController@store');
 });
 
 // this method has a problem with the redirect
