@@ -5,8 +5,8 @@
 {{-- main content --}}
 @section('content')
 
-{{-- Edit the course-module --}}
-<form id="edit_module" class="flexCon" method="POST" action="{{ route('admin.course-modules.update', $courseModule->id) }}">
+{{-- Edit the module --}}
+<form id="edit_module" class="flexCon" method="POST" action="{{ route('admin.modules.update', $module->id) }}">
 
   @csrf
   @method('PATCH')
@@ -16,7 +16,7 @@
   <div class="col-md-75 bx">
 
     @include('admin.partials.error')
-    @component('admin.components.input-title', ['field_title' => 'Module Title', 'input_value' => $courseModule->title])@endcomponent
+    @component('admin.components.input-title', ['field_title' => 'Module Title', 'input_value' => $module->title])@endcomponent
     <br>
     @component('admin.components.toolbar-edit', ['form_name' => 'edit_module'])@endcomponent
 

@@ -28,10 +28,10 @@
     <td></td>
     <td class="txt-ctr">
 
-      {{-- <a href="{{ route('admin.course-modules.edit', $module->id) }}" class="btn success">Edit</a> --}}
-      <a href="/admin/course-modules/{{ $module->id }}/edit" class="btn success">Edit</a>
+      {{-- <a href="{{ route('admin.modules.edit', $module->id) }}" class="btn success">Edit</a> --}}
+      <a href="/admin/modules/{{ $module->id }}/edit" class="btn success">Edit</a>
 
-      <form method="POST" class="dilb" action="{{ route('admin.course-modules.destroy', $module->id) }}">
+      <form method="POST" class="dilb" action="{{ route('admin.modules.destroy', $module->id) }}">
 
         {{ method_field('DELETE') }}
         {{ csrf_field() }}

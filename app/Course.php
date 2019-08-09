@@ -2,17 +2,16 @@
 
 namespace App;
 
+use App\Module;
 use Illuminate\Database\Eloquent\Model;
-
-use App\CourseModule;
 
 class Course extends Model {
 
-    protected $guarded = [];
+	protected $guarded = [];
 
-    public function courseModules() {
+	public function modules() {
 
-        return $this->hasMany(CourseModule::class);
+		return $this->hasMany(Module::class);
 
-    }
+	}
 }

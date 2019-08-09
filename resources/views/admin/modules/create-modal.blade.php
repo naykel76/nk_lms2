@@ -1,8 +1,8 @@
 {{---------------------------------------------------------------------------
-  Create new course-module form
+  Create new module form
 ---------------------------------------------------------------------------}}
 
-<form method="POST" action="/admin/courses/{{ $course->id }}/course-modules">
+<form method="POST" action="/admin/courses/{{ $course->id }}/modules">
 
   @csrf
 

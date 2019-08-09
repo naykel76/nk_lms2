@@ -2,9 +2,9 @@
 
 @section('title', $title)
 
-{{-- Add course-module model --}}
+{{-- Add module model --}}
 @component('components.modal', ['modalId' => 'addModule', 'modal_title' => 'Add Course Module'])
-@include('admin.course-modules.create')
+@include('admin.modules.create')
 @endcomponent()
 
 @section('content')
@@ -51,9 +51,9 @@
 {{-- display course modules --}}
 <div class="modules-list-container mt">
 
-  @forelse ($course->courseModules as $courseModule)
+  @forelse ($course->modules as $module)
 
-  <form method="POST" class="light nm py" action="{{ route('admin.course-modules.destroy', $courseModule->id) }}">
+  <form method="POST" class="light nm py" action="{{ route('admin.modules.destroy', $module->id) }}">
 
     @csrf
     @method('DELETE')
@@ -62,10 +62,10 @@
 
       {{-- Edit course modal --}}
       <div class="col" style="flex-grow: 1;">
-        <a href="{{ route('admin.course-modules.edit', $courseModule->id) }}">{{ $courseModule->title }}</a>
+        <a href="{{ route('admin.modules.edit', $module->id) }}">{{ $module->title }}</a>
       </div>
 
-      {{-- delete course-module --}}
+      {{-- delete module --}}
       <div class="col" style="flex-grow: 0;">
         <button type="submit" class="btn-danger sm" onclick="return confirm('Are you sure?')">Delete</button>
       </div>
