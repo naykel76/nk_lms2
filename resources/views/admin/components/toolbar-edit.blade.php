@@ -11,7 +11,7 @@ used so laravel knows which form it is submitting.
 @endcomponent
 
 ---------------------------------------------------------------------------}}
-<div class="toolbar pxy">
+<div class="toolbar mb">
   <button form="{{ $form_name }}" type="submit" name="action" value="save" class="btn-success">Save and Stay</button> &nbsp;
   <button form="{{ $form_name }}" type="submit" name="action" value="save_close" class="btn-primary">Save and Close</button> &nbsp;
   <a class="btn-danger" href="{{ URL::previous() }}">Cancel</a> &nbsp;

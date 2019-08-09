@@ -13,7 +13,7 @@ insert toolbar partial here ...
 -- note --
 cancel will only work if there is a previous url to go back to
 ---------------------------------------------------------------------------}}
-<div class="toolbar pxy">
+<div class="toolbar mb">
   <button form="{{ $form_name }}" type="submit" name="action" value="save" class="btn-success">Create</button> &nbsp;
   <a class="btn-danger" href="{{ URL::previous() }}">Cancel</a> &nbsp;
 </div>

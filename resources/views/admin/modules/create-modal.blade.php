@@ -1,13 +1,13 @@
 {{---------------------------------------------------------------------------
-  Create new course-module form
+  Create new module form
 ---------------------------------------------------------------------------}}
 
-<form method="POST" action="/admin/courses/{{ $course->id }}/course-modules"">
+<form method="POST" action="/admin/courses/{{ $course->id }}/modules">
 
-@csrf
+  @csrf
 
-<div class=" row">
-  <input type="text" name="module_title" placeholder="Enter course module" class="{{ $errors->has('module_title') ? 'danger' : '' }}">
+  <div class=" row">
+    <input type="text" name="module_title" placeholder="Enter course module" class="{{ $errors->has('module_title') ? 'danger' : '' }}">
   </div>
 
   <div class="row">

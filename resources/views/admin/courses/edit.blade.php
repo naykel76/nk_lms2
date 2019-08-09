@@ -1,109 +1,82 @@
-@extends('admin.layouts.admin-3-column')
+@extends('admin.layouts.2c-ar-fluid')
 
 @section('title', $title)
 
-{{-- Add course-module model --}}
+{{-- Add module model --}}
 @component('components.modal', ['modalId' => 'addModule', 'modal_title' => 'Add Course Module'])
-@include('admin.course-modules.create')
+@include('admin.modules.create')
 @endcomponent()
-
-{{-- toolbar --}}
-@section('toolbar')
-@component('admin.components.toolbar-edit', ['form_name' => 'course'])@endcomponent
-@endsection
-
 
 @section('content')
 
 
-<div class="row">
+<form id="course_edit" class="flexCon" method="POST" action="{{ route('admin.courses.update', $course->id) }}">
 
-  <div class="col-md-80 npl">
+  @csrf
+  @method('PATCH')
 
-    <form id="course" method="POST" action="{{ route('admin.courses.update', $course->id) }}">
+  <div class="col-md-25">
 
-      @csrf
-      @method('PATCH')
+    <div class="bx-primary">
 
-      <div class="wrapper">
+      @component('admin.components.input-title', ['field_title' => 'Course Title', 'input_value' => $course->title])@endcomponent
+      @component('admin.components.input-slug', ['field_title' => 'URL Alias', 'input_value' => $course->slug])@endcomponent
+      @component('admin.components.input-image', ['field_title' => 'Image URL','input_value' => $course->image])@endcomponent
+      @component('admin.components.input-headline', ['field_title' => 'Course Headline','input_value' => $course->headline])@endcomponent
 
-        <div class="row align-stretch">
-
-          <div class="col-md-25 primary py">
-            @include('admin.components.frm-title')
-            @include('admin.components.frm-alias')
-            @include('admin.components.frm-headline')
-            @include('admin.components.frm-image')
-          </div>
-
-          <div class="col-md-75 pxy">
-            @include('admin.partials.error')
-            @include('admin.components.frm-cke')
-          </div>
-
-        </div>
-
-      </div>
-
-    </form>
-
-  </div>
-
-  {{-- right column --}}
-  <div class="col-md-20 primary py">
-
-    {{-- display course modules --}}
-    <h2>Course Modules</h2>
-
-    <a class="btn-success" href="#addModule">Add New Module</a>
-
-    <div class="modules-list-container mt">
-
-      @forelse ($course->courseModules as $courseModule)
-
-      <form method="POST" class="light nm py" action="{{ route('admin.course-modules.destroy', $courseModule->id) }}">
-
-        @csrf
-        @method('DELETE')
-
-        <div class="row">
-
-          {{-- Edit course modal --}}
-          <div class="col" style="flex-grow: 1;">
-            <a href="{{ route('admin.course-modules.edit', $courseModule->id) }}">{{ $courseModule->title }}</a>
-          </div>
-
-          {{-- delete course-module --}}
-          <div class="col" style="flex-grow: 0;">
-            <button type="submit" class="btn-danger sm" onclick="return confirm('Are you sure?')">Delete</button>
-          </div>
-        </div>
-
-      </form>
-
-      @empty
-
-      <p>This course has no modules</p>
-
-      @endforelse
     </div>
 
   </div>
-</div>
+
+  <div class="col-md-75">
+
+    @component('admin.components.toolbar-edit', ['form_name' => 'course_edit'])@endcomponent
+    @include('admin.partials.error')
+    @component('admin.components.input-cke', ['field_title' => 'TitleLabel','input_value' => $course->body])@endcomponent
+
+  </div>
 
 
+</form>
 
 @endsection
 
 
+@section('aside')
+<h2>Course Modules</h2>
 
+{{-- add course module --}}
+<a class="btn-success" href="#addModule">Add New Module</a>
 
-{{-- @foreach ($courseModule->lessons as $lesson)
+{{-- display course modules --}}
+<div class="modules-list-container mt">
 
-      <div class="pxy-sm">
-        {{ $lesson->title }}
-<a href="{{ route('admin.course-modules.edit', $courseModule->id) }}" class="btn sm success">Edit</a>
-<button type="submit" class="btn sm danger" onclick="return confirm('Are you sure?')">Delete</button>
+  @forelse ($course->modules as $module)
+
+  <form method="POST" class="light nm py" action="{{ route('admin.modules.destroy', $module->id) }}">
+
+    @csrf
+    @method('DELETE')
+
+    <div class="row">
+
+      {{-- Edit course modal --}}
+      <div class="col" style="flex-grow: 1;">
+        <a href="{{ route('admin.modules.edit', $module->id) }}">{{ $module->title }}</a>
+      </div>
+
+      {{-- delete module --}}
+      <div class="col" style="flex-grow: 0;">
+        <button type="submit" class="btn-danger sm" onclick="return confirm('Are you sure?')">Delete</button>
+      </div>
+    </div>
+
+  </form>
+
+  @empty
+
+  <p>This course has no modules</p>
+
+  @endforelse
 </div>
-
-@endforeach --}}
+@endsection
